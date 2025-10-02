@@ -2,7 +2,7 @@ import cv2
 import numpy as np
 
 #輸入圖片
-img = cv2.imread('sullyoon1.jpg')
+img = cv2.imread('test_picture.jpg')
 points = []
 
 '''
