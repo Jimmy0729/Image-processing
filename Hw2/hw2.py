@@ -26,9 +26,12 @@ except Exception as e:
     print("無效輸入:{e}")
     exit()
 
+# --- 3.計算新比例
+nr1, nc1 = int(nr*scale), int(nc*scale)
 
-img2 = cv2.resize(img, None, fx=scale, fy=scale, interpolation=cv2.INTER_AREA)#縮小圖像
-img3 = cv2.resize(img2, None, fx = 1/scale, fy = 1/scale, interpolation=cv2.INTER_LINEAR)#修復圖像
+
+img2 = cv2.resize(img, (nr1, nc1), interpolation=cv2.INTER_AREA)#縮小圖像
+img3 = cv2.resize(img2, (nr, nc), interpolation=cv2.INTER_LINEAR)#修復圖像
 
 
 # --- 4.顯示結果
