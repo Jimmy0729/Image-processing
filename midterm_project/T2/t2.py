@@ -20,24 +20,17 @@ def histogram(f, color='black', label=None):
 img2 = cv2.imread('T2-test.jpg', 0)
 
 '''
-因為原圖對比度過高，所以採用自適應性直方圖等化CLAHE，因為發現直接直方圖等化好像
-有點過度增強，所以改採用CLAHE，最後再用gamma修正稍微讓整體變暗一點
+觀察到圖片中有負片的效果，所以直接將 255剪掉像素值
+及可以得到結果
 '''
+negative_img = 255 - img2
 #--- T2
-# img1 = cv2.equalizeHist(imgs[1])
-# negative_image = img_negative(imgs[1])
-# gamma_correct2 = gamma_correction(imgs[1], gamma=1.2)
-clahe = cv2.createCLAHE(clipLimit=1.2, tileGridSize=(12,12))
-clahe_img = clahe.apply(img2)
 
-# gaussian = cv2.GaussianBlur(clahe_img,(3,3),0.8)
-
-gamma_img = gamma_correction(clahe_img, gamma=1.2)
 
 # === 保存圖片 ===
-# cv2.imwrite('restored_result.jpg', gamma_img)
+cv2.imwrite('restored_result.jpg', negative_img)
 
-cv2.imshow("image_negative",gamma_img)
+cv2.imshow("image_negative",negative_img)
 cv2.waitKey(0)
 
 
